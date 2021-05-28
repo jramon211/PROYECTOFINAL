@@ -1,15 +1,15 @@
 VERSION 5.00
 Object = "{67397AA1-7FB1-11D0-B148-00A0C922E820}#6.0#0"; "MSADODC.OCX"
 Object = "{CDE57A40-8B86-11D0-B3C6-00A0C90AEA82}#1.0#0"; "msdatgrd.ocx"
-Begin VB.Form FRMINVENTARIO 
+Begin VB.Form FRMINV 
    Caption         =   "INVENTARIO"
-   ClientHeight    =   11745
+   ClientHeight    =   11760
    ClientLeft      =   120
    ClientTop       =   465
    ClientWidth     =   11040
    ForeColor       =   &H8000000E&
    LinkTopic       =   "Form1"
-   ScaleHeight     =   11745
+   ScaleHeight     =   11760
    ScaleWidth      =   11040
    StartUpPosition =   3  'Windows Default
    Begin VB.CommandButton CMDSAL 
@@ -30,7 +30,7 @@ Begin VB.Form FRMINVENTARIO
       Width           =   1695
    End
    Begin VB.CommandButton CMDBUS 
-      Caption         =   "MODIFICAR"
+      Caption         =   "ELIMINAR"
       BeginProperty Font 
          Name            =   "Myriad Hebrew"
          Size            =   12
@@ -389,8 +389,19 @@ Begin VB.Form FRMINVENTARIO
       Width           =   3735
    End
 End
-Attribute VB_Name = "FRMINVENTARIO"
+Attribute VB_Name = "FRMINV"
 Attribute VB_GlobalNameSpace = False
 Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
+Private Sub Form_Load()
+
+
+
+Dim CN As New ADODB.Connection
+Dim RS As New ADODB.Recordset
+
+RS.LockType = adLockOptimistic
+
+
+End Sub
