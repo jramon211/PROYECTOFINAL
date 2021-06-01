@@ -3,13 +3,13 @@ Object = "{67397AA1-7FB1-11D0-B148-00A0C922E820}#6.0#0"; "MSADODC.OCX"
 Object = "{CDE57A40-8B86-11D0-B3C6-00A0C90AEA82}#1.0#0"; "msdatgrd.ocx"
 Begin VB.Form FRMINV 
    Caption         =   "INVENTARIO"
-   ClientHeight    =   11760
+   ClientHeight    =   12690
    ClientLeft      =   120
    ClientTop       =   465
    ClientWidth     =   11040
    ForeColor       =   &H8000000E&
    LinkTopic       =   "Form1"
-   ScaleHeight     =   11760
+   ScaleHeight     =   12690
    ScaleWidth      =   11040
    StartUpPosition =   3  'Windows Default
    Begin VB.CommandButton CMDSAL 
@@ -149,6 +149,7 @@ Begin VB.Form FRMINV
       Height          =   615
       Left            =   360
       Top             =   11880
+      Visible         =   0   'False
       Width           =   3615
       _ExtentX        =   6376
       _ExtentY        =   1085
@@ -394,6 +395,10 @@ Attribute VB_GlobalNameSpace = False
 Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
+Private Sub CMDSAL_Click()
+End
+End Sub
+
 Private Sub Form_Load()
 
 

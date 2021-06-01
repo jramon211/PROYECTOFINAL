@@ -1,12 +1,12 @@
 VERSION 5.00
 Begin VB.Form FRMLOGIN 
    Caption         =   "Form1"
-   ClientHeight    =   5355
+   ClientHeight    =   6825
    ClientLeft      =   120
    ClientTop       =   450
    ClientWidth     =   9060
    LinkTopic       =   "Form1"
-   ScaleHeight     =   5355
+   ScaleHeight     =   6825
    ScaleWidth      =   9060
    StartUpPosition =   3  'Windows Default
    Begin VB.CommandButton CMDSALIR 
@@ -188,11 +188,12 @@ Attribute VB_GlobalNameSpace = False
 Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
+Dim CON As New ADODB.Connection
+Private WithEvents rs As ADODB.Recordset
+Attribute rs.VB_VarHelpID = -1
 Private Sub CMDLOGIN_Click()
-    If TXTNOM = "Jessica" And TXTCED = "1234567890" Then
-        FRMLOGIN.Hide
-        FRMINV.Show
-    ElseIf TXTNOM = "" And TXTCED = "" Then
+     
+    If TXTNOM = "" And TXTCED = "" Then
     MsgBox "Llenar todos los campos indicados.", vbInformation, "Dialogo"
     ElseIf TXTNOM = "" Then
     MsgBox "Llenar el campo de nombre", vbInformation, "Dialogo"
@@ -202,16 +203,31 @@ Private Sub CMDLOGIN_Click()
     MsgBox "Llenar el campo de cedula correcta con numeros", vbInformation, "Dialogo"
     TXTCED = ""
     Else
-    MsgBox "Un campo ingresado es incorrecto", vbCritical, "Dialogo"
-    TXTNOM = ""
-    TXTCED = ""
+    
+    rs.Requery 'Refrescar la tabla
+    rs.Find "NOMBRE='" & (TXTNOM.Text) & "'"
+    'Validad que el usuario exista para poder borrarlo
+        If rs.EOF Then
+            MsgBox "No se encontro ningun registro", vbInformation, "Eliminar registro"
+            Exit Sub 'Termina el procedimiento
+        Else
+        If !CEDULA = TXTCED.Text Then
+            FRMINV.Show
+            FRMLOGIN.Hide
+            
+        End If
     End If
+End Sub
+
+Private Sub Form_Load()
+Set rs = New ADODB.Recordset
+CON.Open "Provider=Microsoft.Jet.OLEDB.4.0;" & "Data Source=C:\Users\JULIO\Desktop\PROYECTOFINAL\DATA\BASEINV.mdb;Persist Security Info=False"
+
+rs.Source = "DUENO"
+rs.Open "select * from DUENO", CON
+rs.MoveFirst
 End Sub
 
 Private Sub CMDSALIR_Click()
 End
-End Sub
-
-Private Sub Form_Load()
-
 End Sub
