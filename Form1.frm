@@ -404,9 +404,9 @@ Private Sub Form_Load()
 
 
 Dim CN As New ADODB.Connection
-Dim RS As New ADODB.Recordset
+Dim rs As New ADODB.Recordset
 
-RS.LockType = adLockOptimistic
+rs.LockType = adLockOptimistic
 
 
 End Sub

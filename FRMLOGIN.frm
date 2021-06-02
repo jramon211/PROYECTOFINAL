@@ -1,12 +1,12 @@
 VERSION 5.00
 Begin VB.Form FRMLOGIN 
    Caption         =   "Form1"
-   ClientHeight    =   6825
+   ClientHeight    =   6255
    ClientLeft      =   120
    ClientTop       =   450
    ClientWidth     =   9060
    LinkTopic       =   "Form1"
-   ScaleHeight     =   6825
+   ScaleHeight     =   6255
    ScaleWidth      =   9060
    StartUpPosition =   3  'Windows Default
    Begin VB.CommandButton CMDSALIR 
@@ -205,13 +205,12 @@ Private Sub CMDLOGIN_Click()
     Else
     
     rs.Requery 'Refrescar la tabla
-    rs.Find "NOMBRE='" & (TXTNOM.Text) & "'"
+    rs.Find "NOMBRE='" & (TXTNOM.Text) & "'", , , 1
     'Validad que el usuario exista para poder borrarlo
         If rs.EOF Then
             MsgBox "No se encontro ningun registro", vbInformation, "Eliminar registro"
             Exit Sub 'Termina el procedimiento
-        Else
-        If !CEDULA = TXTCED.Text Then
+        ElseIf rs!CEDULA = TXTCED.Text Then
             FRMINV.Show
             FRMLOGIN.Hide
             
