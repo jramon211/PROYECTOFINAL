@@ -12,6 +12,91 @@ Begin VB.Form FRMINV
    ScaleHeight     =   12690
    ScaleWidth      =   11040
    StartUpPosition =   3  'Windows Default
+   Begin VB.CommandButton Command4 
+      Caption         =   ">>"
+      BeginProperty Font 
+         Name            =   "Myriad Hebrew"
+         Size            =   11.25
+         Charset         =   0
+         Weight          =   700
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   735
+      Left            =   6360
+      TabIndex        =   20
+      Top             =   11880
+      Width           =   735
+   End
+   Begin VB.CommandButton Command3 
+      Caption         =   ">"
+      BeginProperty Font 
+         Name            =   "Myriad Hebrew"
+         Size            =   11.25
+         Charset         =   0
+         Weight          =   700
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   735
+      Left            =   5400
+      TabIndex        =   19
+      Top             =   11880
+      Width           =   735
+   End
+   Begin VB.CommandButton Command2 
+      Caption         =   "<"
+      BeginProperty Font 
+         Name            =   "Myriad Hebrew"
+         Size            =   11.25
+         Charset         =   0
+         Weight          =   700
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   735
+      Left            =   4440
+      TabIndex        =   18
+      Top             =   11880
+      Width           =   735
+   End
+   Begin VB.CommandButton Command1 
+      Caption         =   "<<"
+      BeginProperty Font 
+         Name            =   "Myriad Hebrew"
+         Size            =   11.25
+         Charset         =   0
+         Weight          =   700
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   735
+      Left            =   3600
+      TabIndex        =   17
+      Top             =   11880
+      Width           =   735
+   End
+   Begin VB.CommandButton CMDBUSCAR 
+      Caption         =   "BUSCAR"
+      BeginProperty Font 
+         Name            =   "Myriad Hebrew"
+         Size            =   12
+         Charset         =   0
+         Weight          =   700
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   615
+      Left            =   8640
+      TabIndex        =   16
+      Top             =   4440
+      Width           =   1695
+   End
    Begin VB.CommandButton CMDSAL 
       Caption         =   "SALIR"
       BeginProperty Font 
@@ -23,11 +108,11 @@ Begin VB.Form FRMINV
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
-      Height          =   615
-      Left            =   8160
-      TabIndex        =   16
-      Top             =   4440
-      Width           =   1695
+      Height          =   735
+      Left            =   9600
+      TabIndex        =   14
+      Top             =   120
+      Width           =   1215
    End
    Begin VB.CommandButton CMDBUS 
       Caption         =   "ELIMINAR"
@@ -41,8 +126,8 @@ Begin VB.Form FRMINV
          Strikethrough   =   0   'False
       EndProperty
       Height          =   615
-      Left            =   5880
-      TabIndex        =   15
+      Left            =   4560
+      TabIndex        =   13
       Top             =   4440
       Width           =   1695
    End
@@ -58,8 +143,8 @@ Begin VB.Form FRMINV
          Strikethrough   =   0   'False
       EndProperty
       Height          =   615
-      Left            =   3600
-      TabIndex        =   14
+      Left            =   2520
+      TabIndex        =   12
       Top             =   4440
       Width           =   1695
    End
@@ -75,8 +160,8 @@ Begin VB.Form FRMINV
          Strikethrough   =   0   'False
       EndProperty
       Height          =   615
-      Left            =   1440
-      TabIndex        =   13
+      Left            =   480
+      TabIndex        =   11
       Top             =   4440
       Width           =   1695
    End
@@ -84,7 +169,7 @@ Begin VB.Form FRMINV
       Bindings        =   "Form1.frx":0000
       Height          =   6255
       Left            =   360
-      TabIndex        =   12
+      TabIndex        =   10
       Top             =   5400
       Width           =   10335
       _ExtentX        =   18230
@@ -147,8 +232,8 @@ Begin VB.Form FRMINV
    End
    Begin MSAdodcLib.Adodc Adodc1 
       Height          =   615
-      Left            =   360
-      Top             =   11880
+      Left            =   9600
+      Top             =   12480
       Visible         =   0   'False
       Width           =   3615
       _ExtentX        =   6376
@@ -192,21 +277,33 @@ Begin VB.Form FRMINV
       EndProperty
       _Version        =   393216
    End
-   Begin VB.TextBox TXTIDPROV 
-      Height          =   495
-      Left            =   8640
-      TabIndex        =   11
-      Top             =   2640
-      Width           =   1575
-   End
    Begin VB.TextBox TXTIDPRO 
+      Alignment       =   2  'Center
+      BeginProperty Font 
+         Name            =   "Myriad Hebrew"
+         Size            =   14.25
+         Charset         =   0
+         Weight          =   700
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   495
-      Left            =   8640
-      TabIndex        =   10
-      Top             =   2040
+      Left            =   8760
+      TabIndex        =   9
+      Top             =   3720
       Width           =   1575
    End
    Begin VB.TextBox TXTCOS 
+      BeginProperty Font 
+         Name            =   "Myriad Hebrew"
+         Size            =   14.25
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   495
       Left            =   2280
       TabIndex        =   7
@@ -214,6 +311,15 @@ Begin VB.Form FRMINV
       Width           =   1575
    End
    Begin VB.TextBox TXTCAN 
+      BeginProperty Font 
+         Name            =   "Myriad Hebrew"
+         Size            =   14.25
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   495
       Left            =   2280
       TabIndex        =   6
@@ -221,6 +327,15 @@ Begin VB.Form FRMINV
       Width           =   1575
    End
    Begin VB.TextBox TXTNUMP 
+      BeginProperty Font 
+         Name            =   "Myriad Hebrew"
+         Size            =   14.25
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   495
       Left            =   2280
       TabIndex        =   2
@@ -229,7 +344,7 @@ Begin VB.Form FRMINV
    End
    Begin VB.Label Label8 
       BackStyle       =   0  'Transparent
-      Caption         =   "PRODUCTOS"
+      Caption         =   "DATOS DE LOS PRODUCTOS"
       BeginProperty Font 
          Name            =   "Myriad Hebrew"
          Size            =   14.25
@@ -242,34 +357,15 @@ Begin VB.Form FRMINV
       ForeColor       =   &H8000000A&
       Height          =   255
       Left            =   840
-      TabIndex        =   17
+      TabIndex        =   15
       Top             =   2040
-      Width           =   2535
+      Width           =   4215
    End
    Begin VB.Line Line2 
       X1              =   120
       X2              =   10920
       Y1              =   1560
       Y2              =   1560
-   End
-   Begin VB.Label Label7 
-      Alignment       =   1  'Right Justify
-      BackStyle       =   0  'Transparent
-      Caption         =   "IDPROVEEDORES"
-      BeginProperty Font 
-         Name            =   "Myriad Hebrew"
-         Size            =   14.25
-         Charset         =   0
-         Weight          =   700
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-      Height          =   495
-      Left            =   6000
-      TabIndex        =   9
-      Top             =   2640
-      Width           =   2415
    End
    Begin VB.Label Label6 
       Alignment       =   1  'Right Justify
@@ -285,9 +381,9 @@ Begin VB.Form FRMINV
          Strikethrough   =   0   'False
       EndProperty
       Height          =   495
-      Left            =   6360
+      Left            =   8400
       TabIndex        =   8
-      Top             =   2160
+      Top             =   3120
       Width           =   2055
    End
    Begin VB.Label Label5 
@@ -395,13 +491,52 @@ Attribute VB_GlobalNameSpace = False
 Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
+Private Sub CMDBUSCAR_Click()
+Adodc1.Refresh
+DataGrid1.Refresh
+Adodc1.Recordset.Find "idproducto=" & Val(TXTIDPRO.Text)
+
+End Sub
+
 Private Sub CMDSAL_Click()
-End
+If MsgBox("Esta seguro que desea cerrar el formulario?", vbQuestion + vbYesNo) = vbYes Then
+            End
+    End If
+End Sub
+
+Private Sub Command1_Click()
+Adodc1.Recordset.MoveFirst
+End Sub
+
+Private Sub Command2_Click()
+Adodc1.Recordset.MovePrevious
+End Sub
+
+Private Sub Command3_Click()
+Adodc1.Recordset.MoveNext
+End Sub
+
+Private Sub Command4_Click()
+Adodc1.Recordset.MoveLast
+End Sub
+
+Private Sub DataGrid1_DblClick()
+If DataGrid1.ApproxCount < 1 Then
+MsgBox "no ha seleccionado ningun registro", vbExclamation
+Exit Sub
+Else
+      TXTIDPRO.Text = DataGrid1.Columns(0).Text
+     TXTNUMP.Text = DataGrid1.Columns(1).Text
+     TXTCAN.Text = DataGrid1.Columns(2).Text
+     TXTCOS.Text = DataGrid1.Columns(3).Text
+     'TXTIDPROV.Text = DataGrid1.Columns(4).Text
+    Adodc1.Refresh
+    
+End If
+
 End Sub
 
 Private Sub Form_Load()
-
-
 
 Dim CN As New ADODB.Connection
 Dim rs As New ADODB.Recordset

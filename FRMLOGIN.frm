@@ -1,12 +1,12 @@
 VERSION 5.00
 Begin VB.Form FRMLOGIN 
    Caption         =   "Form1"
-   ClientHeight    =   6255
+   ClientHeight    =   5295
    ClientLeft      =   120
    ClientTop       =   450
    ClientWidth     =   9060
    LinkTopic       =   "Form1"
-   ScaleHeight     =   6255
+   ScaleHeight     =   5295
    ScaleWidth      =   9060
    StartUpPosition =   3  'Windows Default
    Begin VB.CommandButton CMDSALIR 
@@ -53,11 +53,11 @@ Begin VB.Form FRMLOGIN
          Italic          =   -1  'True
          Strikethrough   =   0   'False
       EndProperty
-      Height          =   465
+      Height          =   585
       Left            =   3240
       TabIndex        =   1
-      Top             =   2760
-      Width           =   4335
+      Top             =   2520
+      Width           =   3855
    End
    Begin VB.TextBox TXTCED 
       BeginProperty Font 
@@ -69,12 +69,12 @@ Begin VB.Form FRMLOGIN
          Italic          =   -1  'True
          Strikethrough   =   0   'False
       EndProperty
-      Height          =   465
+      Height          =   585
       Left            =   3240
       MaxLength       =   10
       TabIndex        =   2
-      Top             =   3600
-      Width           =   4455
+      Top             =   3360
+      Width           =   3615
    End
    Begin VB.Label Label5 
       Alignment       =   1  'Right Justify
@@ -92,7 +92,7 @@ Begin VB.Form FRMLOGIN
       Height          =   375
       Left            =   840
       TabIndex        =   8
-      Top             =   3600
+      Top             =   3480
       Width           =   1935
    End
    Begin VB.Label Label3 
@@ -111,7 +111,7 @@ Begin VB.Form FRMLOGIN
       Height          =   375
       Left            =   840
       TabIndex        =   7
-      Top             =   2880
+      Top             =   2640
       Width           =   1935
    End
    Begin VB.Label Label4 
@@ -130,7 +130,7 @@ Begin VB.Form FRMLOGIN
       Height          =   15
       Left            =   960
       TabIndex        =   6
-      Top             =   3720
+      Top             =   3480
       Width           =   1935
    End
    Begin VB.Line Line1 
