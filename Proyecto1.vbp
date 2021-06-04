@@ -7,6 +7,7 @@ Reference=*\G{00000200-0000-0010-8000-00AA006D2EA4}#2.0#0#..\..\..\..\Program Fi
 Object={CDE57A40-8B86-11D0-B3C6-00A0C90AEA82}#1.0#0; msdatgrd.ocx
 Reference=*\G{56BF9020-7A2F-11D0-9482-00A0C91110ED}#1.0#0#..\..\..\..\Windows\SysWow64\MSBIND.DLL#Microsoft Data Binding Collection
 Form=FRMLOGIN.frm
+Form=VENTAS.frm
 IconForm="FRMINV"
 Startup="FRMLOGIN"
 HelpFile=""

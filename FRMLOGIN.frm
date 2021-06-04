@@ -208,7 +208,7 @@ Private Sub CMDLOGIN_Click()
     rs.Find "NOMBRE='" & (TXTNOM.Text) & "'", , , 1
     'Validad que el usuario exista para poder borrarlo
         If rs.EOF Then
-            MsgBox "No se encontro ningun registro", vbInformation, "Eliminar registro"
+            MsgBox "Los datos ingresados no se encuentra dentro del base de datos.", vbInformation, "Eliminar registro"
             Exit Sub 'Termina el procedimiento
         ElseIf rs!CEDULA = TXTCED.Text Then
             FRMINV.Show
