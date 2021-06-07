@@ -9,6 +9,23 @@ Begin VB.Form FRMLOGIN
    ScaleHeight     =   5295
    ScaleWidth      =   9060
    StartUpPosition =   3  'Windows Default
+   Begin VB.CommandButton Command1 
+      Caption         =   "AGREGAR NUEVO USUARIO + PROPIEDADES"
+      BeginProperty Font 
+         Name            =   "Myriad Hebrew"
+         Size            =   8.25
+         Charset         =   0
+         Weight          =   700
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   495
+      Left            =   6720
+      TabIndex        =   9
+      Top             =   240
+      Width           =   2175
+   End
    Begin VB.CommandButton CMDSALIR 
       Caption         =   "SALIR"
       BeginProperty Font 
@@ -191,6 +208,7 @@ Attribute VB_Exposed = False
 Dim CON As New ADODB.Connection
 Private WithEvents rs As ADODB.Recordset
 Attribute rs.VB_VarHelpID = -1
+
 Private Sub CMDLOGIN_Click()
      
     If TXTNOM = "" And TXTCED = "" Then
@@ -213,14 +231,41 @@ Private Sub CMDLOGIN_Click()
         ElseIf rs!CEDULA = TXTCED.Text Then
             FRMINV.Show
             FRMLOGIN.Hide
-            
+            a = TXTCED.Text
+        End If
+    End If
+End Sub
+
+Private Sub Command1_Click()
+
+If TXTNOM = "" And TXTCED = "" Then
+    MsgBox "Llenar todos los campos indicados, para poder crear un nuevo usuario.", vbInformation, "Dialogo"
+    ElseIf TXTNOM = "" Then
+    MsgBox "Llenar el campo de nombre, para poder crear un nuevo usuario.", vbInformation, "Dialogo"
+    ElseIf TXTCED = "" Then
+    MsgBox "Llenar el campo de cedula, para poder crear un nuevo usuario.", vbInformation, "Dialogo"
+    ElseIf Not (IsNumeric(TXTCED.Text)) Then
+    MsgBox "Llenar el campo de cedula correcta con numeros, para poder crear un nuevo usuario.", vbInformation, "Dialogo"
+    TXTCED = ""
+    Else
+    
+    rs.Requery 'Refrescar la tabla
+    rs.Find "NOMBRE='" & (TXTNOM.Text) & "'", , , 1
+    'Validad que el usuario exista para poder borrarlo
+        If rs.EOF Then
+            MsgBox "Los datos ingresados no se encuentra dentro del base de datos. Ingresar los datos necesarios para poder crear un nuevo usuario.", vbInformation, "Eliminar registro"
+            Exit Sub 'Termina el procedimiento
+        ElseIf rs!CEDULA = TXTCED.Text Then
+            FRMNUELO.Show
+            FRMLOGIN.Hide
         End If
     End If
 End Sub
 
 Private Sub Form_Load()
 Set rs = New ADODB.Recordset
-CON.Open "Provider=Microsoft.Jet.OLEDB.4.0;" & "Data Source=C:\Users\JULIO\Desktop\PROYECTOFINAL\DATA\BASEINV.mdb;Persist Security Info=False"
+CON.Open "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" & App.Path & "\Data\BASEINV.mdb;Persist Security Info=False"
+
 
 rs.Source = "DUENO"
 rs.Open "select * from DUENO", CON

@@ -3,15 +3,32 @@ Object = "{67397AA1-7FB1-11D0-B148-00A0C922E820}#6.0#0"; "MSADODC.OCX"
 Object = "{CDE57A40-8B86-11D0-B3C6-00A0C90AEA82}#1.0#0"; "msdatgrd.ocx"
 Begin VB.Form FRMINV 
    Caption         =   "INVENTARIO"
-   ClientHeight    =   12690
+   ClientHeight    =   12855
    ClientLeft      =   120
    ClientTop       =   465
-   ClientWidth     =   13410
+   ClientWidth     =   11835
    ForeColor       =   &H8000000E&
    LinkTopic       =   "Form1"
-   ScaleHeight     =   12690
-   ScaleWidth      =   13410
+   ScaleHeight     =   12855
+   ScaleWidth      =   11835
    StartUpPosition =   3  'Windows Default
+   Begin VB.CommandButton CMDGUARD 
+      Caption         =   "GUARDAR"
+      BeginProperty Font 
+         Name            =   "Myriad Hebrew"
+         Size            =   12
+         Charset         =   0
+         Weight          =   700
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   615
+      Left            =   2040
+      TabIndex        =   22
+      Top             =   4440
+      Width           =   1695
+   End
    Begin VB.CommandButton Command5 
       Caption         =   "VENTAS"
       BeginProperty Font 
@@ -95,7 +112,7 @@ Begin VB.Form FRMINV
          Strikethrough   =   0   'False
       EndProperty
       Height          =   615
-      Left            =   480
+      Left            =   240
       TabIndex        =   13
       Top             =   4440
       Width           =   1695
@@ -112,7 +129,7 @@ Begin VB.Form FRMINV
          Strikethrough   =   0   'False
       EndProperty
       Height          =   615
-      Left            =   2520
+      Left            =   3840
       TabIndex        =   12
       Top             =   4440
       Width           =   1695
@@ -129,7 +146,7 @@ Begin VB.Form FRMINV
          Strikethrough   =   0   'False
       EndProperty
       Height          =   615
-      Left            =   4560
+      Left            =   5760
       TabIndex        =   11
       Top             =   4440
       Width           =   1695
@@ -214,7 +231,7 @@ Begin VB.Form FRMINV
          Strikethrough   =   0   'False
       EndProperty
       Height          =   615
-      Left            =   8280
+      Left            =   8880
       TabIndex        =   6
       Top             =   4320
       Width           =   1695
@@ -360,7 +377,7 @@ Begin VB.Form FRMINV
          Strikethrough   =   0   'False
       EndProperty
       Height          =   495
-      Left            =   8400
+      Left            =   9000
       TabIndex        =   3
       Top             =   3600
       Width           =   1575
@@ -454,14 +471,14 @@ Begin VB.Form FRMINV
       Width           =   4215
    End
    Begin VB.Line Line4 
-      X1              =   7440
-      X2              =   7440
+      X1              =   8040
+      X2              =   8040
       Y1              =   1920
       Y2              =   5040
    End
    Begin VB.Line Line3 
-      X1              =   7320
-      X2              =   7320
+      X1              =   7920
+      X2              =   7920
       Y1              =   1920
       Y2              =   5040
    End
@@ -485,7 +502,7 @@ Begin VB.Form FRMINV
          Strikethrough   =   0   'False
       EndProperty
       Height          =   495
-      Left            =   8040
+      Left            =   8640
       TabIndex        =   2
       Top             =   3000
       Width           =   2055
@@ -561,9 +578,19 @@ Adodc1.Recordset.Update
 MsgBox "El registro ha sido actualizado.", vbInformation, "Dialogo"
 End Sub
 
-Private Sub CMDMOD_Click()
+Private Sub CMDGUARD_Click()
+If TXTNUMP.Text = "" Or TXTCAN.Text = "" Or TXTCOS.Text = "" Then
     
+    MsgBox "Llenar todos los campos de datos de los productos", vbInformation, "Dialogo"
+    Adodc1.Recordset.Delete
+    Else
+    MsgBox "El registro ha sido guardado.", vbInformation, "Dialogo"
+    End If
+End Sub
+
+Private Sub CMDMOD_Click()
     Adodc1.Recordset.AddNew
+    
 End Sub
 '
 Private Sub CMDSAL_Click()
@@ -572,20 +599,27 @@ If MsgBox("Esta seguro que desea cerrar el formulario?", vbQuestion + vbYesNo) =
     End If
 End Sub
 'BUTONES DE MOVIMIENTO INICIO
-Private Sub Command1_Click()
+
 Adodc1.Recordset.MoveFirst
+
 End Sub
 
 Private Sub Command2_Click()
+
 Adodc1.Recordset.MovePrevious
+
 End Sub
 
 Private Sub Command3_Click()
+
 Adodc1.Recordset.MoveNext
+
 End Sub
 
 Private Sub Command4_Click()
+
 Adodc1.Recordset.MoveLast
+
 End Sub
 'BUTONES DE MOVIMIENTO END
 

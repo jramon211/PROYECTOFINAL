@@ -6,11 +6,45 @@ Begin VB.Form FRMVENTAS
    ClientHeight    =   7920
    ClientLeft      =   120
    ClientTop       =   450
-   ClientWidth     =   10830
+   ClientWidth     =   12375
    LinkTopic       =   "Form1"
    ScaleHeight     =   7920
-   ScaleWidth      =   10830
+   ScaleWidth      =   12375
    StartUpPosition =   3  'Windows Default
+   Begin VB.CommandButton Command3 
+      Caption         =   "CERRAR INVENTARIO"
+      BeginProperty Font 
+         Name            =   "Myriad Hebrew"
+         Size            =   12
+         Charset         =   0
+         Weight          =   700
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   735
+      Left            =   10680
+      TabIndex        =   21
+      Top             =   4440
+      Width           =   1575
+   End
+   Begin VB.CommandButton Command2 
+      Caption         =   "MOSTRAR INVENTARIO"
+      BeginProperty Font 
+         Name            =   "Myriad Hebrew"
+         Size            =   12
+         Charset         =   0
+         Weight          =   700
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   735
+      Left            =   10680
+      TabIndex        =   20
+      Top             =   3480
+      Width           =   1575
+   End
    Begin VB.CommandButton Command1 
       Caption         =   "LIMPIAR"
       BeginProperty Font 
@@ -105,14 +139,12 @@ Begin VB.Form FRMVENTAS
          Strikethrough   =   0   'False
       EndProperty
       Height          =   735
-      Left            =   9000
+      Left            =   10680
       TabIndex        =   17
-      Top             =   240
+      Top             =   2520
       Width           =   1575
    End
    Begin VB.TextBox TXTCAN2 
-      DataField       =   "CANTIDAD"
-      DataSource      =   "Adodc1"
       BeginProperty Font 
          Name            =   "Myriad Hebrew"
          Size            =   14.25
@@ -211,8 +243,6 @@ Begin VB.Form FRMVENTAS
       EndProperty
    End
    Begin VB.TextBox TXTTOT 
-      DataField       =   "TOTAL"
-      DataSource      =   "Adodc1"
       BeginProperty Font 
          Name            =   "Myriad Hebrew"
          Size            =   14.25
@@ -245,8 +275,6 @@ Begin VB.Form FRMVENTAS
       Width           =   1095
    End
    Begin VB.TextBox TXTCAN 
-      DataField       =   "CANTIDAD"
-      DataSource      =   "Adodc1"
       BeginProperty Font 
          Name            =   "Myriad Hebrew"
          Size            =   14.25
@@ -311,6 +339,12 @@ Begin VB.Form FRMVENTAS
       TabIndex        =   0
       Top             =   4560
       Width           =   1695
+   End
+   Begin VB.Line Line3 
+      X1              =   10440
+      X2              =   10440
+      Y1              =   120
+      Y2              =   7680
    End
    Begin VB.Label Label7 
       Alignment       =   1  'Right Justify
@@ -388,7 +422,7 @@ Begin VB.Form FRMVENTAS
    End
    Begin VB.Line Line1 
       X1              =   120
-      X2              =   10920
+      X2              =   10320
       Y1              =   1200
       Y2              =   1200
    End
@@ -451,7 +485,7 @@ Begin VB.Form FRMVENTAS
    End
    Begin VB.Line Line2 
       X1              =   120
-      X2              =   10920
+      X2              =   10320
       Y1              =   1080
       Y2              =   1080
    End
@@ -496,14 +530,15 @@ If rs.EOF Then
            TXTCAN.Text = rs.Fields("CANTIDAD")
            TXTCOS.Text = rs.Fields("PRECIO")
            TXTID.Text = Val(TXTIDPRO.Text)
-           
+            Command1.Enabled = True
+            CMDAGR.Enabled = True
+            CMDELI.Enabled = True
 End If
  
 End Sub
 
 Private Sub CMDAGR_Click()
-Dim a As Integer
-a = 0
+
 If Val(TXTCAN2.Text) > Val(TXTCAN.Text) Then
     MsgBox "El cantidad de productos pedidos es mayor al stock en este momento.", vbInformation, "Dialogo"
     Exit Sub
@@ -512,23 +547,44 @@ Else
     rs.Update
 End If
 
-TXTTOT.Text = Val(TXTCAN2.Text) * Val(TXTCOS.Text)
 
+
+TXTTOT.Text = Val(TXTCAN2.Text) * Val(TXTCOS.Text)
 Adodc1.Recordset.AddNew
+
+'Le añadi estas lineas, como te dije al momento de poner un AddNew debo especificar los campos y con que informacion voy _
+a llenarlos. El problema de porque no nos salio antes es que en tu proyecto tienes como datasource de los textbox el adodc _
+por lo que al momento de poner AddNew los textbox borran su contenido y ya no podemos extraer la infomacion de ahi, solo le quite eso _
+y le añadi estas lineas.
+
+Adodc1.Recordset("CEDULA") = (a)
+Adodc1.Recordset("IDPRODUCTOS") = (TXTIDPRO.Text)
+Adodc1.Recordset("CANTIDAD") = (TXTCAN2.Text)
+Adodc1.Recordset("TOTAL") = (TXTTOT.Text)
+Adodc1.Recordset("FECHA") = (Date)
+Adodc1.Recordset.Update
+Adodc1.Refresh
+Adodc1.Recordset.MoveLast
+
+FRMINV.Adodc1.Refresh
+TXTCAN.Text = Val(TXTCAN.Text) - Val(TXTCAN2.Text)
 
 End Sub
 
 Private Sub CMDELI_Click()
 If MsgBox("Esta seguro que desea eliminar un registro?", vbQuestion + vbYesNo) = vbYes Then
+        rs.Fields("CANTIDAD") = Val(TXTCAN.Text) + Val(TXTCAN2.Text)
+        rs.Update
         Adodc1.Recordset.Delete
-
+        FRMINV.Adodc1.Refresh
     End If
 End Sub
 
 Private Sub CMDREG_Click()
+If MsgBox("Esta seguro que desea regresar al formulario de inventario?", vbQuestion + vbYesNo) = vbYes Then
 FRMVENTAS.Hide
 FRMINV.Show
-
+    End If
 End Sub
 
 Private Sub Command1_Click()
@@ -540,10 +596,20 @@ TXTCAN2.Text = ""
 TXTTOT.Text = ""
 End Sub
 
+Private Sub Command2_Click()
+FRMINV.Show
+End Sub
+
+Private Sub Command3_Click()
+FRMINV.Hide
+End Sub
+
 Private Sub Form_Load()
 Set rs = New ADODB.Recordset
     'Abrimos la base de datos "agenda.mdb".
-    CN.Open "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=C:\Users\JULIO\Desktop\PROYECTOFINAL\DATA\BASEINV.mdb;Persist Security Info=False"
+    CN.Open "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" & App.Path & "\Data\BASEINV.mdb;Persist Security Info=False"
+
+    '"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=C:\Users\JULIO\Desktop\PROYECTOFINAL\DATA\BASEINV.mdb;Persist Security Info=False"
     rs.Source = "INVENTARIO" 'Especificamos la fuente de datos. En este caso la tabla "contactos".
     rs.CursorType = adOpenKeyset 'Definimos el tipo de cursor.
     rs.LockType = adLockOptimistic 'Definimos el tipo de bloqueo.
@@ -554,5 +620,9 @@ Set rs = New ADODB.Recordset
     TXTCOS.Enabled = False
     TXTCAN2.Enabled = False
     TXTTOT.Enabled = False
+     Command1.Enabled = False
+      CMDAGR.Enabled = False
+    CMDELI.Enabled = False
+    
 End Sub
 
