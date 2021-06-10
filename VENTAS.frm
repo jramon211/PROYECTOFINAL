@@ -2,14 +2,14 @@ VERSION 5.00
 Object = "{67397AA1-7FB1-11D0-B148-00A0C922E820}#6.0#0"; "MSADODC.OCX"
 Object = "{CDE57A40-8B86-11D0-B3C6-00A0C90AEA82}#1.0#0"; "msdatgrd.ocx"
 Begin VB.Form FRMVENTAS 
-   Caption         =   "Form1"
-   ClientHeight    =   7920
+   Caption         =   "Ventas"
+   ClientHeight    =   7815
    ClientLeft      =   120
    ClientTop       =   450
-   ClientWidth     =   12375
+   ClientWidth     =   12525
    LinkTopic       =   "Form1"
-   ScaleHeight     =   7920
-   ScaleWidth      =   12375
+   ScaleHeight     =   7815
+   ScaleWidth      =   12525
    StartUpPosition =   3  'Windows Default
    Begin VB.CommandButton Command3 
       Caption         =   "CERRAR INVENTARIO"
@@ -75,13 +75,13 @@ Begin VB.Form FRMVENTAS
          Strikethrough   =   0   'False
       EndProperty
       Height          =   495
-      Left            =   9240
+      Left            =   11880
       TabIndex        =   18
-      Top             =   5400
+      Top             =   7440
       Visible         =   0   'False
       Width           =   1095
    End
-   Begin MSAdodcLib.Adodc Adodc1 
+   Begin MSAdodcLib.Adodc ADODCVENTAS 
       Height          =   615
       Left            =   720
       Top             =   8040
@@ -188,7 +188,7 @@ Begin VB.Form FRMVENTAS
       _ExtentY        =   2778
       _Version        =   393216
       HeadLines       =   1
-      RowHeight       =   15
+      RowHeight       =   18
       BeginProperty HeadFont {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
          Name            =   "MS Sans Serif"
          Size            =   8.25
@@ -199,8 +199,8 @@ Begin VB.Form FRMVENTAS
          Strikethrough   =   0   'False
       EndProperty
       BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
-         Name            =   "MS Sans Serif"
-         Size            =   8.25
+         Name            =   "Myriad Hebrew"
+         Size            =   9
          Charset         =   0
          Weight          =   400
          Underline       =   0   'False
@@ -503,7 +503,7 @@ Begin VB.Form FRMVENTAS
       EndProperty
       ForeColor       =   &H8000000A&
       Height          =   255
-      Left            =   2040
+      Left            =   360
       TabIndex        =   5
       Top             =   1560
       Width           =   4215
@@ -550,23 +550,23 @@ End If
 
 
 TXTTOT.Text = Val(TXTCAN2.Text) * Val(TXTCOS.Text)
-Adodc1.Recordset.AddNew
+ADODCVENTAS.Recordset.AddNew
 
 'Le añadi estas lineas, como te dije al momento de poner un AddNew debo especificar los campos y con que informacion voy _
 a llenarlos. El problema de porque no nos salio antes es que en tu proyecto tienes como datasource de los textbox el adodc _
 por lo que al momento de poner AddNew los textbox borran su contenido y ya no podemos extraer la infomacion de ahi, solo le quite eso _
 y le añadi estas lineas.
 
-Adodc1.Recordset("CEDULA") = (a)
-Adodc1.Recordset("IDPRODUCTOS") = (TXTIDPRO.Text)
-Adodc1.Recordset("CANTIDAD") = (TXTCAN2.Text)
-Adodc1.Recordset("TOTAL") = (TXTTOT.Text)
-Adodc1.Recordset("FECHA") = (Date)
-Adodc1.Recordset.Update
-Adodc1.Refresh
-Adodc1.Recordset.MoveLast
+ADODCVENTAS.Recordset("CEDULA") = (a)
+ADODCVENTAS.Recordset("IDPRODUCTOS") = (TXTIDPRO.Text)
+ADODCVENTAS.Recordset("CANTIDAD") = (TXTCAN2.Text)
+ADODCVENTAS.Recordset("TOTAL") = (TXTTOT.Text)
+ADODCVENTAS.Recordset("FECHA") = (Date)
+ADODCVENTAS.Recordset.Update
+ADODCVENTAS.Refresh
+ADODCVENTAS.Recordset.MoveLast
 
-FRMINV.Adodc1.Refresh
+FRMINV.ADODCINV.Refresh
 TXTCAN.Text = Val(TXTCAN.Text) - Val(TXTCAN2.Text)
 
 End Sub
@@ -575,15 +575,18 @@ Private Sub CMDELI_Click()
 If MsgBox("Esta seguro que desea eliminar un registro?", vbQuestion + vbYesNo) = vbYes Then
         rs.Fields("CANTIDAD") = Val(TXTCAN.Text) + Val(TXTCAN2.Text)
         rs.Update
-        Adodc1.Recordset.Delete
-        FRMINV.Adodc1.Refresh
+        ADODCVENTAS.Recordset.Delete
+        FRMINV.ADODCVENTAS.Refresh
     End If
 End Sub
 
 Private Sub CMDREG_Click()
-If MsgBox("Esta seguro que desea regresar al formulario de inventario?", vbQuestion + vbYesNo) = vbYes Then
-FRMVENTAS.Hide
-FRMINV.Show
+If MsgBox("Esta seguro que desea regresar al formulario de inventario?", vbQuestion + vbYesNo, "Ventas") = vbYes Then
+    FRMINV.Show
+    rs.Close
+    
+    Unload Me
+    
     End If
 End Sub
 
@@ -607,8 +610,8 @@ End Sub
 Private Sub Form_Load()
 Set rs = New ADODB.Recordset
     'Abrimos la base de datos "agenda.mdb".
-    CN.Open "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" & App.Path & "\Data\BASEINV.mdb;Persist Security Info=False"
-
+    If CN.State = 0 Then CN.Open "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" & App.Path & "\Data\BASEINV.mdb;Persist Security Info=False"
+    
     '"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=C:\Users\JULIO\Desktop\PROYECTOFINAL\DATA\BASEINV.mdb;Persist Security Info=False"
     rs.Source = "INVENTARIO" 'Especificamos la fuente de datos. En este caso la tabla "contactos".
     rs.CursorType = adOpenKeyset 'Definimos el tipo de cursor.

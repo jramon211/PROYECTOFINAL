@@ -392,7 +392,7 @@ Adodc1.Recordset.AddNew
 End Sub
 
 Private Sub CMDREG_Click()
-If MsgBox("Esta seguro que desea regresar al formulario de login?", vbQuestion + vbYesNo) = vbYes Then
+If MsgBox("Esta seguro que desea regresar al formulario de login?", vbQuestion + vbYesNo, "Propiedades de Usuario") = vbYes Then
 FRMNUELO.Hide
 FRMLOGIN.Show
     End If

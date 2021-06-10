@@ -2,53 +2,23 @@ VERSION 5.00
 Object = "{67397AA1-7FB1-11D0-B148-00A0C922E820}#6.0#0"; "MSADODC.OCX"
 Object = "{CDE57A40-8B86-11D0-B3C6-00A0C90AEA82}#1.0#0"; "msdatgrd.ocx"
 Begin VB.Form FRMINV 
+   BorderStyle     =   1  'Fixed Single
    Caption         =   "INVENTARIO"
-   ClientHeight    =   12855
-   ClientLeft      =   120
-   ClientTop       =   465
-   ClientWidth     =   11835
+   ClientHeight    =   12825
+   ClientLeft      =   45
+   ClientTop       =   390
+   ClientWidth     =   10920
+   ControlBox      =   0   'False
    ForeColor       =   &H8000000E&
    LinkTopic       =   "Form1"
-   ScaleHeight     =   12855
-   ScaleWidth      =   11835
+   MaxButton       =   0   'False
+   MinButton       =   0   'False
+   ScaleHeight     =   12825
+   ScaleWidth      =   10920
    StartUpPosition =   3  'Windows Default
-   Begin VB.CommandButton CMDGUARD 
-      Caption         =   "GUARDAR"
-      BeginProperty Font 
-         Name            =   "Myriad Hebrew"
-         Size            =   12
-         Charset         =   0
-         Weight          =   700
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-      Height          =   615
-      Left            =   2040
-      TabIndex        =   22
-      Top             =   4440
-      Width           =   1695
-   End
-   Begin VB.CommandButton Command5 
-      Caption         =   "VENTAS"
-      BeginProperty Font 
-         Name            =   "Myriad Hebrew"
-         Size            =   15.75
-         Charset         =   0
-         Weight          =   700
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-      Height          =   735
-      Left            =   360
-      TabIndex        =   21
-      Top             =   11880
-      Width           =   2295
-   End
    Begin VB.TextBox TXTNUMP 
       DataField       =   "NOMBRE"
-      DataSource      =   "Adodc1"
+      DataSource      =   "ADODCINV"
       BeginProperty Font 
          Name            =   "Myriad Hebrew"
          Size            =   14.25
@@ -60,13 +30,13 @@ Begin VB.Form FRMINV
       EndProperty
       Height          =   495
       Left            =   2280
-      TabIndex        =   16
+      TabIndex        =   6
       Top             =   2520
       Width           =   3615
    End
    Begin VB.TextBox TXTCAN 
       DataField       =   "CANTIDAD"
-      DataSource      =   "Adodc1"
+      DataSource      =   "ADODCINV"
       BeginProperty Font 
          Name            =   "Myriad Hebrew"
          Size            =   14.25
@@ -78,13 +48,13 @@ Begin VB.Form FRMINV
       EndProperty
       Height          =   495
       Left            =   2280
-      TabIndex        =   15
+      TabIndex        =   5
       Top             =   3120
       Width           =   1575
    End
    Begin VB.TextBox TXTCOS 
       DataField       =   "PRECIO"
-      DataSource      =   "Adodc1"
+      DataSource      =   "ADODCINV"
       BeginProperty Font 
          Name            =   "Myriad Hebrew"
          Size            =   14.25
@@ -96,187 +66,34 @@ Begin VB.Form FRMINV
       EndProperty
       Height          =   495
       Left            =   2280
-      TabIndex        =   14
+      TabIndex        =   4
       Top             =   3720
       Width           =   1575
    End
-   Begin VB.CommandButton CMDMOD 
-      Caption         =   "AGREGAR"
-      BeginProperty Font 
-         Name            =   "Myriad Hebrew"
-         Size            =   12
-         Charset         =   0
-         Weight          =   700
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-      Height          =   615
-      Left            =   240
-      TabIndex        =   13
-      Top             =   4440
-      Width           =   1695
-   End
-   Begin VB.CommandButton CMDGUA 
-      Caption         =   "EDITAR"
-      BeginProperty Font 
-         Name            =   "Myriad Hebrew"
-         Size            =   12
-         Charset         =   0
-         Weight          =   700
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-      Height          =   615
-      Left            =   3840
-      TabIndex        =   12
-      Top             =   4440
-      Width           =   1695
-   End
-   Begin VB.CommandButton CMDBUS 
-      Caption         =   "ELIMINAR"
-      BeginProperty Font 
-         Name            =   "Myriad Hebrew"
-         Size            =   12
-         Charset         =   0
-         Weight          =   700
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-      Height          =   615
-      Left            =   5760
-      TabIndex        =   11
-      Top             =   4440
-      Width           =   1695
-   End
-   Begin VB.CommandButton Command4 
-      Caption         =   ">>"
-      BeginProperty Font 
-         Name            =   "Myriad Hebrew"
-         Size            =   11.25
-         Charset         =   0
-         Weight          =   700
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-      Height          =   735
-      Left            =   9720
-      TabIndex        =   10
-      Top             =   11880
-      Width           =   735
-   End
-   Begin VB.CommandButton Command3 
-      Caption         =   ">"
-      BeginProperty Font 
-         Name            =   "Myriad Hebrew"
-         Size            =   11.25
-         Charset         =   0
-         Weight          =   700
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-      Height          =   735
-      Left            =   8760
-      TabIndex        =   9
-      Top             =   11880
-      Width           =   735
-   End
-   Begin VB.CommandButton Command2 
-      Caption         =   "<"
-      BeginProperty Font 
-         Name            =   "Myriad Hebrew"
-         Size            =   11.25
-         Charset         =   0
-         Weight          =   700
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-      Height          =   735
-      Left            =   7800
-      TabIndex        =   8
-      Top             =   11880
-      Width           =   735
-   End
-   Begin VB.CommandButton Command1 
-      Caption         =   "<<"
-      BeginProperty Font 
-         Name            =   "Myriad Hebrew"
-         Size            =   11.25
-         Charset         =   0
-         Weight          =   700
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-      Height          =   735
-      Left            =   6960
-      TabIndex        =   7
-      Top             =   11880
-      Width           =   735
-   End
-   Begin VB.CommandButton CMDBUSCAR 
-      Caption         =   "BUSCAR"
-      BeginProperty Font 
-         Name            =   "Myriad Hebrew"
-         Size            =   12
-         Charset         =   0
-         Weight          =   700
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-      Height          =   615
-      Left            =   8880
-      TabIndex        =   6
-      Top             =   4320
-      Width           =   1695
-   End
-   Begin VB.CommandButton CMDSAL 
-      Caption         =   "SALIR"
-      BeginProperty Font 
-         Name            =   "Myriad Hebrew"
-         Size            =   12
-         Charset         =   0
-         Weight          =   700
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-      Height          =   735
-      Left            =   9600
-      TabIndex        =   5
-      Top             =   120
-      Width           =   1215
-   End
    Begin MSDataGridLib.DataGrid DataGrid1 
       Bindings        =   "Form1.frx":0000
-      Height          =   6255
+      Height          =   6015
       Left            =   240
-      TabIndex        =   4
-      Top             =   5400
+      TabIndex        =   3
+      Top             =   5160
       Width           =   10335
       _ExtentX        =   18230
-      _ExtentY        =   11033
+      _ExtentY        =   10610
       _Version        =   393216
       HeadLines       =   1
-      RowHeight       =   15
+      RowHeight       =   18
       BeginProperty HeadFont {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
-         Name            =   "MS Sans Serif"
-         Size            =   8.25
+         Name            =   "Myriad Hebrew"
+         Size            =   9.75
          Charset         =   0
-         Weight          =   400
+         Weight          =   700
          Underline       =   0   'False
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
       BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
-         Name            =   "MS Sans Serif"
-         Size            =   8.25
+         Name            =   "Myriad Hebrew"
+         Size            =   9
          Charset         =   0
          Weight          =   400
          Underline       =   0   'False
@@ -318,7 +135,7 @@ Begin VB.Form FRMINV
          EndProperty
       EndProperty
    End
-   Begin MSAdodcLib.Adodc Adodc1 
+   Begin MSAdodcLib.Adodc ADODCINV 
       Height          =   615
       Left            =   11520
       Top             =   12000
@@ -377,22 +194,139 @@ Begin VB.Form FRMINV
          Strikethrough   =   0   'False
       EndProperty
       Height          =   495
-      Left            =   9000
-      TabIndex        =   3
+      Left            =   8880
+      TabIndex        =   2
       Top             =   3600
       Width           =   1575
    End
-   Begin VB.Line Line6 
-      X1              =   6600
-      X2              =   6600
-      Y1              =   11760
-      Y2              =   12600
+   Begin VB.Image Image17 
+      Height          =   630
+      Left            =   9960
+      Picture         =   "Form1.frx":0017
+      Top             =   120
+      Width           =   720
    End
-   Begin VB.Line Line5 
-      X1              =   6480
-      X2              =   6480
-      Y1              =   11760
-      Y2              =   12600
+   Begin VB.Image Image16 
+      Height          =   690
+      Left            =   6360
+      Picture         =   "Form1.frx":0AA9
+      Top             =   11760
+      Width           =   780
+   End
+   Begin VB.Image Image15 
+      Height          =   690
+      Left            =   9120
+      Picture         =   "Form1.frx":1ABF
+      Top             =   11760
+      Width           =   780
+   End
+   Begin VB.Image Image14 
+      Height          =   690
+      Left            =   8160
+      Picture         =   "Form1.frx":2ADD
+      Top             =   11760
+      Width           =   780
+   End
+   Begin VB.Image Image13 
+      Height          =   690
+      Left            =   7320
+      Picture         =   "Form1.frx":385D
+      Top             =   11760
+      Width           =   780
+   End
+   Begin VB.Image Image12 
+      Height          =   1185
+      Left            =   9000
+      Picture         =   "Form1.frx":45D5
+      Stretch         =   -1  'True
+      Top             =   1800
+      Width           =   1200
+   End
+   Begin VB.Image Image11 
+      Height          =   750
+      Left            =   2400
+      Picture         =   "Form1.frx":5E7D
+      Top             =   11760
+      Width           =   1800
+   End
+   Begin VB.Image Image10 
+      Height          =   750
+      Left            =   360
+      Picture         =   "Form1.frx":81D9
+      Top             =   11760
+      Width           =   1800
+   End
+   Begin VB.Shape Shape1 
+      BorderColor     =   &H00FFFFFF&
+      FillColor       =   &H00FFFFFF&
+      FillStyle       =   0  'Solid
+      Height          =   1335
+      Left            =   120
+      Top             =   11400
+      Width           =   10695
+   End
+   Begin VB.Image Image9 
+      Height          =   1575
+      Left            =   -120
+      Picture         =   "Form1.frx":9F71
+      Stretch         =   -1  'True
+      Top             =   11280
+      Width           =   11145
+   End
+   Begin VB.Image Image8 
+      Height          =   3495
+      Left            =   8160
+      Picture         =   "Form1.frx":A1AE
+      Stretch         =   -1  'True
+      Top             =   1680
+      Width           =   225
+   End
+   Begin VB.Image Image7 
+      Height          =   750
+      Left            =   8760
+      Picture         =   "Form1.frx":A3EB
+      Top             =   4320
+      Width           =   1800
+   End
+   Begin VB.Image Image6 
+      Height          =   750
+      Left            =   5880
+      Picture         =   "Form1.frx":C259
+      Top             =   4320
+      Width           =   1800
+   End
+   Begin VB.Image Image5 
+      Height          =   750
+      Left            =   3960
+      Picture         =   "Form1.frx":E294
+      Top             =   4320
+      Width           =   1800
+   End
+   Begin VB.Image Image4 
+      Height          =   750
+      Left            =   2040
+      Picture         =   "Form1.frx":FF11
+      Top             =   4320
+      Width           =   1800
+   End
+   Begin VB.Image Image3 
+      Height          =   750
+      Left            =   120
+      Picture         =   "Form1.frx":11F4E
+      Top             =   4320
+      Width           =   1800
+   End
+   Begin VB.Image Image2 
+      Height          =   735
+      Left            =   4680
+      Top             =   600
+      Width           =   855
+   End
+   Begin VB.Image Image1 
+      Height          =   855
+      Left            =   120
+      Top             =   120
+      Width           =   3015
    End
    Begin VB.Label Label3 
       Alignment       =   1  'Right Justify
@@ -409,7 +343,7 @@ Begin VB.Form FRMINV
       EndProperty
       Height          =   495
       Left            =   0
-      TabIndex        =   20
+      TabIndex        =   10
       Top             =   2640
       Width           =   1815
    End
@@ -428,7 +362,7 @@ Begin VB.Form FRMINV
       EndProperty
       Height          =   495
       Left            =   0
-      TabIndex        =   19
+      TabIndex        =   9
       Top             =   3240
       Width           =   1815
    End
@@ -447,7 +381,7 @@ Begin VB.Form FRMINV
       EndProperty
       Height          =   495
       Left            =   0
-      TabIndex        =   18
+      TabIndex        =   8
       Top             =   3840
       Width           =   1815
    End
@@ -465,28 +399,10 @@ Begin VB.Form FRMINV
       EndProperty
       ForeColor       =   &H8000000A&
       Height          =   255
-      Left            =   840
-      TabIndex        =   17
-      Top             =   2040
+      Left            =   1320
+      TabIndex        =   7
+      Top             =   1920
       Width           =   4215
-   End
-   Begin VB.Line Line4 
-      X1              =   8040
-      X2              =   8040
-      Y1              =   1920
-      Y2              =   5040
-   End
-   Begin VB.Line Line3 
-      X1              =   7920
-      X2              =   7920
-      Y1              =   1920
-      Y2              =   5040
-   End
-   Begin VB.Line Line2 
-      X1              =   120
-      X2              =   10920
-      Y1              =   1560
-      Y2              =   1560
    End
    Begin VB.Label Label6 
       Alignment       =   1  'Right Justify
@@ -502,16 +418,10 @@ Begin VB.Form FRMINV
          Strikethrough   =   0   'False
       EndProperty
       Height          =   495
-      Left            =   8640
-      TabIndex        =   2
+      Left            =   8520
+      TabIndex        =   1
       Top             =   3000
       Width           =   2055
-   End
-   Begin VB.Line Line1 
-      X1              =   120
-      X2              =   10920
-      Y1              =   1680
-      Y2              =   1680
    End
    Begin VB.Label Label2 
       BackStyle       =   0  'Transparent
@@ -525,29 +435,12 @@ Begin VB.Form FRMINV
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
+      ForeColor       =   &H00FFFFFF&
       Height          =   855
       Left            =   5640
-      TabIndex        =   1
+      TabIndex        =   0
       Top             =   600
       Width           =   3135
-   End
-   Begin VB.Label Label1 
-      BackStyle       =   0  'Transparent
-      Caption         =   "BAZAR Jessica"
-      BeginProperty Font 
-         Name            =   "Myriad Hebrew"
-         Size            =   27.75
-         Charset         =   0
-         Weight          =   700
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-      Height          =   615
-      Left            =   1920
-      TabIndex        =   0
-      Top             =   720
-      Width           =   3735
    End
 End
 Attribute VB_Name = "FRMINV"
@@ -555,41 +448,27 @@ Attribute VB_GlobalNameSpace = False
 Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
-Private Sub CMDBUS_Click()
-If MsgBox("Esta seguro que desea eliminar un registro?", vbQuestion + vbYesNo) = vbYes Then
-        Adodc1.Recordset.Delete
 
-    End If
-End Sub
 
 Private Sub CMDBUSCAR_Click()
-Adodc1.Refresh
+ADODCINV.Refresh
 DataGrid1.Refresh
-Adodc1.Recordset.Find "idproducto=" & Val(TXTIDPRO.Text)
+ADODCINV.Recordset.Find "idproducto=" & Val(TXTIDPRO.Text)
 
-End Sub
-
-Private Sub CMDGUA_Click()
-     
-Adodc1.Recordset.Fields("NOMBRE") = TXTNUMP.Text
-Adodc1.Recordset.Fields("CANTIDAD") = TXTCAN.Text
-Adodc1.Recordset.Fields("PRECIO") = TXTCOS.Text
-Adodc1.Recordset.Update
-MsgBox "El registro ha sido actualizado.", vbInformation, "Dialogo"
-End Sub
-
-Private Sub CMDGUARD_Click()
-If TXTNUMP.Text = "" Or TXTCAN.Text = "" Or TXTCOS.Text = "" Then
-    
-    MsgBox "Llenar todos los campos de datos de los productos", vbInformation, "Dialogo"
-    Adodc1.Recordset.Delete
-    Else
-    MsgBox "El registro ha sido guardado.", vbInformation, "Dialogo"
-    End If
 End Sub
 
 Private Sub CMDMOD_Click()
-    Adodc1.Recordset.AddNew
+    MsgBox "Llenar todos los campos de datos de los productos y guardar para agregar correctamente al inventario.", vbInformation, "Dialogo"
+    RSINV.MoveLast
+    RSINV.AddNew
+    RSINV("NOMBRE") = TXTNUMP.Text
+    RSINV("PRECIO") = TXTCOS.Text
+    RSINV("CANTIDAD") = TXTCAN.Text
+    RSINV("IDPROVEEDORES") = 0
+    RSINV.Update
+    ADODCINV.Refresh
+    ADODCINV.Recordset.MoveLast
+    
     
 End Sub
 '
@@ -597,47 +476,45 @@ Private Sub CMDSAL_Click()
 If MsgBox("Esta seguro que desea cerrar el formulario?", vbQuestion + vbYesNo) = vbYes Then
             End
     End If
-End Sub
+    ADODCINV.Recordset.MoveFirst
 'BUTONES DE MOVIMIENTO INICIO
+End Sub
 
-Adodc1.Recordset.MoveFirst
+Private Sub Command1_Click()
 
+ADODCINV.Recordset.MoveFirst
 End Sub
 
 Private Sub Command2_Click()
 
-Adodc1.Recordset.MovePrevious
+ADODCINV.Recordset.MovePrevious
 
 End Sub
 
 Private Sub Command3_Click()
 
-Adodc1.Recordset.MoveNext
+ADODCINV.Recordset.MoveNext
 
 End Sub
 
 Private Sub Command4_Click()
 
-Adodc1.Recordset.MoveLast
+ADODCINV.Recordset.MoveLast
 
 End Sub
 'BUTONES DE MOVIMIENTO END
-
-Private Sub Command5_Click()
-FRMVENTAS.Show
-FRMINV.Hide
-
-End Sub
 
 Private Sub DataGrid1_DblClick()
 If DataGrid1.ApproxCount < 1 Then
 MsgBox "no ha seleccionado ningun registro", vbExclamation
 Exit Sub
 Else
+    
       TXTIDPRO.Text = DataGrid1.Columns(0).Text
      TXTNUMP.Text = DataGrid1.Columns(1).Text
      TXTCAN.Text = DataGrid1.Columns(2).Text
      TXTCOS.Text = DataGrid1.Columns(3).Text
+     
      'TXTIDPROV.Text = DataGrid1.Columns(4).Text
     
     
@@ -646,11 +523,165 @@ End If
 End Sub
 
 Private Sub Form_Load()
+    FRMINV.Picture = LoadPicture(App.Path & "\IMG\tst.jpg")
+    Image1.Picture = LoadPicture(App.Path & "\IMG\logob.gif")
+    Image2.Picture = LoadPicture(App.Path & "\IMG\logoinv.gif")
+    tablaINVENTARIO
+    DataGrid1.Columns(1).Width = 3000
+    
+    Image4.Picture = LoadPicture(App.Path & "\IMG\guad2.jpg")
+    'Image5.Picture = LoadPicture(App.Path & "\IMG\ed2.jpg")
+    
 
-Dim CN As New ADODB.Connection
-Dim rs As New ADODB.Recordset
-Adodc1.LockType = adLockReadOnly
-rs.LockType = adLockOptimistic
 
 
+End Sub
+
+
+Private Sub Image3_MouseDown(Button As Integer, Shift As Integer, X As Single, Y As Single)
+    Image3.Picture = LoadPicture(App.Path & "\img\agr1.jpg")
+End Sub
+
+Private Sub Image3_MouseUp(Button As Integer, Shift As Integer, X As Single, Y As Single)
+    Image3.Picture = LoadPicture(App.Path & "\img\agr0.jpg")
+     MsgBox "Llenar todos los campos de datos de los productos y guardar para agregar correctamente al inventario.", vbInformation, "Dialogo"
+    RSINV.MoveLast
+    RSINV.AddNew
+    RSINV("NOMBRE") = TXTNUMP.Text
+    RSINV("PRECIO") = TXTCOS.Text
+    RSINV("CANTIDAD") = TXTCAN.Text
+    RSINV("IDPROVEEDORES") = 0
+    RSINV.Update
+    ADODCINV.Refresh
+    ADODCINV.Recordset.MoveLast
+
+    
+    Image4.Picture = LoadPicture(App.Path & "\IMG\gua0.jpg")
+    'Image5.Picture = LoadPicture(App.Path & "\IMG\ed0.jpg")
+End Sub
+
+
+Private Sub Image4_MouseDown(Button As Integer, Shift As Integer, X As Single, Y As Single)
+    Image4.Picture = LoadPicture(App.Path & "\img\gua1.jpg")
+End Sub
+
+Private Sub Image4_MouseUp(Button As Integer, Shift As Integer, X As Single, Y As Single)
+    Image4.Picture = LoadPicture(App.Path & "\img\gua0.jpg")
+        If TXTNUMP.Text = "" Or TXTCAN.Text = "" Or TXTCOS.Text = "" Then
+    
+    MsgBox "Llenar todos los campos de datos de los productos", vbInformation, "Dialogo"
+    ADODCINV.Recordset.Delete
+    Else
+    MsgBox "El registro ha sido guardado.", vbInformation, "Dialogo"
+    End If
+End Sub
+
+Private Sub Image5_MouseDown(Button As Integer, Shift As Integer, X As Single, Y As Single)
+    Image5.Picture = LoadPicture(App.Path & "\img\ed1.jpg")
+End Sub
+
+Private Sub Image5_MouseUp(Button As Integer, Shift As Integer, X As Single, Y As Single)
+     Image5.Picture = LoadPicture(App.Path & "\img\ed0.jpg")
+     
+    ADODCINV.Recordset.Fields("NOMBRE") = TXTNUMP.Text
+    ADODCINV.Recordset.Fields("CANTIDAD") = TXTCAN.Text
+    ADODCINV.Recordset.Fields("PRECIO") = TXTCOS.Text
+    ADODCINV.Recordset.Update
+    MsgBox "El registro ha sido actualizado.", vbInformation, "Dialogo"
+End Sub
+
+Private Sub Image6_MouseDown(Button As Integer, Shift As Integer, X As Single, Y As Single)
+    Image6.Picture = LoadPicture(App.Path & "\img\eli1.jpg")
+End Sub
+
+Private Sub Image6_MouseUp(Button As Integer, Shift As Integer, X As Single, Y As Single)
+    Image6.Picture = LoadPicture(App.Path & "\img\eli0.jpg")
+    If MsgBox("Esta seguro que desea eliminar un registro?", vbQuestion + vbYesNo) = vbYes Then
+        ADODCINV.Recordset.Delete
+    End If
+End Sub
+
+
+Private Sub Image7_MouseDown(Button As Integer, Shift As Integer, X As Single, Y As Single)
+    Image7.Picture = LoadPicture(App.Path & "\img\bus1.jpg")
+End Sub
+
+Private Sub Image7_MouseUp(Button As Integer, Shift As Integer, X As Single, Y As Single)
+    Image7.Picture = LoadPicture(App.Path & "\img\bus0.jpg")
+    
+    ADODCINV.Refresh
+    DataGrid1.Refresh
+    ADODCINV.Recordset.Find "idproducto=" & Val(TXTIDPRO.Text)
+End Sub
+
+
+Private Sub Image10_MouseDown(Button As Integer, Shift As Integer, X As Single, Y As Single)
+    Image10.Picture = LoadPicture(App.Path & "\img\ven1.jpg")
+End Sub
+
+Private Sub Image10_MouseUp(Button As Integer, Shift As Integer, X As Single, Y As Single)
+    Image10.Picture = LoadPicture(App.Path & "\img\ven0.jpg")
+    FRMVENTAS.Show
+    Unload Me
+End Sub
+
+Private Sub Image11_MouseDown(Button As Integer, Shift As Integer, X As Single, Y As Single)
+    Image11.Picture = LoadPicture(App.Path & "\img\da1.jpg")
+End Sub
+
+Private Sub Image11_MouseUp(Button As Integer, Shift As Integer, X As Single, Y As Single)
+    Image11.Picture = LoadPicture(App.Path & "\img\da0.jpg")
+    Set rs = CN.Execute("select *from inventario")
+    If rs.EOF = False Then
+    Set DRINV.DataSource = rs
+    DRINV.Show
+End If
+End Sub
+Private Sub Image13_MouseDown(Button As Integer, Shift As Integer, X As Single, Y As Single)
+    Image13.Picture = LoadPicture(App.Path & "\img\pri1.jpg")
+End Sub
+
+Private Sub Image13_MouseUp(Button As Integer, Shift As Integer, X As Single, Y As Single)
+    Image13.Picture = LoadPicture(App.Path & "\img\pri0.jpg")
+    ADODCINV.Recordset.MovePrevious
+End Sub
+
+Private Sub Image14_MouseDown(Button As Integer, Shift As Integer, X As Single, Y As Single)
+    Image14.Picture = LoadPicture(App.Path & "\img\sig1.jpg")
+End Sub
+
+Private Sub Image14_MouseUp(Button As Integer, Shift As Integer, X As Single, Y As Single)
+    Image14.Picture = LoadPicture(App.Path & "\img\sig0.jpg")
+    ADODCINV.Recordset.MoveNext
+End Sub
+
+Private Sub Image15_MouseDown(Button As Integer, Shift As Integer, X As Single, Y As Single)
+    Image15.Picture = LoadPicture(App.Path & "\img\fi1.jpg")
+End Sub
+
+Private Sub Image15_MouseUp(Button As Integer, Shift As Integer, X As Single, Y As Single)
+    Image15.Picture = LoadPicture(App.Path & "\img\fi0.jpg")
+    ADODCINV.Recordset.MoveLast
+End Sub
+
+Private Sub Image16_MouseDown(Button As Integer, Shift As Integer, X As Single, Y As Single)
+    Image16.Picture = LoadPicture(App.Path & "\img\in1.jpg")
+End Sub
+
+Private Sub Image16_MouseUp(Button As Integer, Shift As Integer, X As Single, Y As Single)
+    Image16.Picture = LoadPicture(App.Path & "\img\in0.jpg")
+    ADODCINV.Recordset.MoveFirst
+End Sub
+Private Sub Image17_MouseDown(Button As Integer, Shift As Integer, X As Single, Y As Single)
+    Image17.Picture = LoadPicture(App.Path & "\img\X1.jpg")
+End Sub
+
+Private Sub Image17_MouseUp(Button As Integer, Shift As Integer, X As Single, Y As Single)
+    Image17.Picture = LoadPicture(App.Path & "\img\X0.jpg")
+    If MsgBox("Esta seguro que desea cerrar el formulario?", vbQuestion + vbYesNo, "Inventario") = vbYes Then
+   
+        
+            End
+    End If
+    ADODCINV.Recordset.MoveFirst
 End Sub
